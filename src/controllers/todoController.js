@@ -10,8 +10,9 @@ const {
 
 const create = async (req, res, next) => {
   try {
-    await createTodo(req.user.id,req.body);
+    const createdTodo = await createTodo(req.user.id, req.body);
     return res.status(200).send({
+      todo:createdTodo,
       message: "Todo created successfully"
     });
   } catch (e) {

@@ -13,12 +13,14 @@ const _ = require('lodash');
 
 const createTodo = async (userId, todoObject) => {
   try {
-    return await db.execute(create_todo, [
+    const createdTodo = await db.execute(create_todo, [
         todoObject.date,
         todoObject.title,
         false,
         userId]
     );
+    const todo = await db.execute(get_todo, [createdTodo[0].insertId, userId]);
+    return todo[0][0];
   } catch (e) {
     throw new ErrorHandler(e.statusCode || 500, e.message);
   }

@@ -61,7 +61,6 @@ module.exports = {
   update_user_password,
   get_user,
   get_user_by_email,
-
   create_todo,
   get_all_todo,
   get_todo,
